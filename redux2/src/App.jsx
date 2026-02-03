@@ -1,12 +1,20 @@
-
+import {Route, Routes} from "react-router-dom";
    import React from 'react'
-import Counter from './components/Counter'
+import Navbar from './components/Navbar'
+import Cart from './pages/Cart'
+import Home from './pages/Home'
    
    const App = () => {
      return (
+      <>
        <div>
-        <Counter/>
+        <Navbar/>
        </div>
+       <Routes>
+        <Route path="/" element={<Home/>}/>
+         <Route path="/" element={<Cart/>}/>
+       </Routes>
+       </>
      )
    }
    
