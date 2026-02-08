@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const App = () => {
-  const [second,setSecond]= useState(0);
+  const [timer,setTimer]= useState(0);
+  useEffect ( () =>{
+    const interval= setInterval(()=>{
+      setTimer(prev => prev +1);
+    },1000)
+     
+    return () => clearInterval(interval);
+  }, []);
   
   return (
-    <div>App</div>
+    <div>
+      <h1>{timer}</h1>
+    </div>
   )
 }
 
