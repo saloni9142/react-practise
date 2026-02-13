@@ -1,46 +1,43 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add, remove } from "../redux/slices/CartSlice";
+import { toast } from "react-hot-toast";
 
-const Product = ({post}) => {
-  const {cart} =useSelector((state)=>state);
+const Product = ({ post }) => {
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const addToCart =() =>{
+  const addToCart = () => {
     dispatch(add(post));
     toast.success("Item added to cart");
-  }
+  };
 
-  const removeFromCart =() =>{
+  const removeFromCart = () => {
     dispatch(remove(post.id));
-    toast.success("item removed from cart");
-  }
+    toast.success("Item removed from cart");
+  };
+
   return (
     <div>
-      <div>
-        <p>{post.title}</p>
-      </div>
+      <p>{post.title}</p>
 
-      <div>
-        <p>
-          {post.description}
-        </p>
-      </div>
-      <div>
-        <img src={post.image}/>
-      </div>
-      <div>
-        <p>{post.price}</p>
-      </div>
-       {
-        Cart.some((p)=> p.id==post.id) ? 
-        (<button onClick={removeFromCart}>
-         Remove Item
+      <p>{post.description}</p>
 
-        </button>):
-        (<button onClick ={addToCart}>Add to cart</button>)
-       }
+      <img src={post.image} alt={post.title} />
+
+      <p>${post.price}</p>
+
+      {cart.some((p) => p.id === post.id) ? (
+        <button onClick={removeFromCart}>
+          Remove Item
+        </button>
+      ) : (
+        <button onClick={addToCart}>
+          Add to Cart
+        </button>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;
