@@ -3,27 +3,33 @@ import axios from "axios"
 
 const App = () => {
   const [arr, setArr] = useState([])
-  const[error,setError]= useState(false)
+  const[error,setError]= useState("")
+  const [loading,setLoading] = useState(true)
   useEffect(()=>{
     const fetchUrl = async()=>{
        try {
         const response= await axios.get("https://jsonplaceholder.typicode.com/users")
+        
         setArr(response.data);
-    } catch (error) {
-      setError()
+    } catch (err) {
+      setError("failed to fech data")
       console.log(error);
-      
-      
-    }}
+      } finally{
+        setLoading(false)
+      }
+    }
   
     
 fetchUrl()
 
   },[])
   
+  if (loading) return <p>Loading...</p>
+  if (error) return <p style={{ color: 'red' }}>{error}</p>
+
   return (
     <>
-    {error && <p style={{ color: 'red' }}>{error}</p>}
+  
     
       <ul>
      { arr.map((user)=>(

@@ -1,23 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const App = () => {
-  // localStorage.setItem("user", "saloni")
-  // localStorage.setItem("age", 18)
-  // const user = localStorage.getItem("user")
-// const age = localStorage.getItem("age")
+  useEffect(() => {
+    const user = {
+      username: "saloni",
+      age: 21,
+      city: "bhopal"
+    }
 
-//   console.log(age);
+    // Setting data
+    localStorage.setItem("user", JSON.stringify(user))
 
-const user ={
-  username: "saloni",
-  age: "city",
-  city: "bhopal"
+   const storedUser = localStorage.getItem("user");
+if (storedUser) {
+  const userData = JSON.parse(storedUser);
+  console.log("User found:", userData);
+} else {
+  console.log("No user found in storage");
 }
-localStorage.setItem("user" ,JSON.stringify(user))
-const usera = JSON.parse(localStorage.getItem("user"))
+  }, []) // Empty dependency array matlab ye sirf ek baar chalega jab component load hoga
+
   
+
   return (
-    <div>App</div>
+    <div>
+      <h1>Check Console for LocalStorage Data</h1>
+    </div>
   )
 }
 
