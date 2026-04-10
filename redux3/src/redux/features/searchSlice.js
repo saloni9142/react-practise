@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolit'
+import {createSlice} from '@reduxjs/toolkit'
 const searchSlice = createSlice({
     name: "search",
     initialState:{
@@ -10,16 +10,33 @@ const searchSlice = createSlice({
     },
     reducers:{
         setQuery(state,action){
+            state.query=action.payload
 
         },
         setActiveTabs(state,action){
 
         },
         setLoading(state,action){
+             state.loading=true
+            state.error=null
 
         },
         setError(state,action){
+           
+            state.error=action.payload
+            state.loading=false
             
+        },
+        clearResults(state){
+            state.results=[]
+        },
+        setResults(state,action){
+            state.laoding=false
+            state.results=action.payload
+
         }
     }
 })
+
+export const {setQuery,setActiveTabs,setError,setLoading,setResults,clearResults}=searchSlice.actions
+export default searchSlice.reducer
