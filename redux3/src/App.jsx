@@ -3,6 +3,7 @@
 import fetchPhotos, { fetchVideos } from './api/mediaApi'
 import SearchBar from './components/SearchBar'
 import Tabs from "./components/Tabs"
+import ResultGrid from './components/ResultGrid'
    
    const App = () => {
     
@@ -24,6 +25,7 @@ import Tabs from "./components/Tabs"
 
         <SearchBar/>
         <Tabs/>
+        <ResultGrid/>
        </div>
      )
    }
